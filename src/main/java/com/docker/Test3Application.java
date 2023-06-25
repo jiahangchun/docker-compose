@@ -1,8 +1,11 @@
-package com.docker.test3;
+package com.docker;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+/**
+ * @author Administrator
+ */
 @SpringBootApplication
 public class Test3Application {
 
