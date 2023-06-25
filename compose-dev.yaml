@@ -1,12 +1,19 @@
 services:
   app:
     entrypoint:
+    # 目的是为了让当前shell进行睡眠，永不退出
     - sleep
     - infinity
+    # 自定义的image
     image: env/jdk8:latest
     init: true
+    # 工作目录
+    working_dir: /jiahangchun/workdir
     volumes:
-    - type: bind
-      source: /var/run/docker.sock
-      target: /var/run/docker.sock
+    # 资源文件夹
+      - /f/docker_volumes:/jiahangchun/workdir/data
+    # docker 本身coding的必须配置
+      - type: bind
+        source: /var/run/docker.sock
+        target: /var/run/docker.sock
 
