@@ -1,4 +1,4 @@
-package com.docker.excel;
+package com.docker.excel.ding;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -25,7 +25,7 @@ public class ReadFileProcessor {
                 stringBuilder.append(tempString).append("\r\n");
             }
         } catch (Exception e) {
-            log.error("com.docker.excel.ReadFileProcessor.readTxt {} ", e.getMessage(), e);
+            log.error("com.docker.excel.ding.ReadFileProcessor.readTxt {} ", e.getMessage(), e);
         }
         return stringBuilder.toString();
     }
