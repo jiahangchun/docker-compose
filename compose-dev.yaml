@@ -16,4 +16,25 @@ services:
       - type: bind
         source: /var/run/docker.sock
         target: /var/run/docker.sock
+  mysql:
+    restart: always
+    image: mysql:5.7.18
+    container_name: mysql-for-test3
+    volumes:
+      # mysql 挂载的数据盘
+      - /f/mysql_data/mydir:/mydir
+      - /f/mysql_data/datadir:/var/lib/mysql
+      # mysql 启动时执行相关命令
+      - ./src/main/resources/init:/docker-entrypoint-initdb.d/
+      # 指定加载mysql的配置文件为当前目录
+      - ./src/main/resources/config/my.cnf:/etc/my.cnf
+      # 数据库还原目录 可将需要还原的sql文件放在这里
+      - /f/mysql_data/source:/docker-entrypoint-initdb.d
+    environment:
+      - "MYSQL_ROOT_PASSWORD=jiahangchun"
+      - "MYSQL_DATABASE=jiahangchun"
+      - "TZ=Asia/Shanghai"
+    ports:
+      # 使用宿主机的3306端口映射到容器的3306端口
+      - 3306:3306
 
