@@ -1,21 +1,4 @@
 services:
-  app:
-    entrypoint:
-    # 目的是为了让当前shell进行睡眠，永不退出
-    - sleep
-    - infinity
-    # 自定义的image
-    image: env/jdk8:latest
-    init: true
-    # 工作目录
-    working_dir: /jiahangchun/workdir
-    volumes:
-    # 资源文件夹
-      - /f/docker_volumes:/jiahangchun/workdir/data
-    # docker 本身coding的必须配置
-      - type: bind
-        source: /var/run/docker.sock
-        target: /var/run/docker.sock
   mysql:
     restart: always
     image: mysql:5.7.18
@@ -37,13 +20,3 @@ services:
     ports:
       # 使用宿主机的3306端口映射到容器的3306端口
       - 3306:3306
-  Camunda:
-    container_name: Camunda
-    image: camunda/camunda-bpm-platform:run-latest
-    restart: always
-    volumes:
-      - /f/camunda_data:/camunda
-    environment:
-      SKIP_DB_CONFIG: true
-    ports:
-      - 8082:8080
